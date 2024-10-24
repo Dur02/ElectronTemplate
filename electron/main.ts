@@ -68,6 +68,30 @@ const createWindow = () => {
         },
       ],
     },
+    {
+      id: 'navigation',
+      label: 'Navi',
+      submenu: [
+        {
+          id: 'back',
+          label: 'Back',
+          click: () => {
+            if (win.webContents.canGoBack()) {
+              win.webContents.goBack()
+            }
+          },
+        },
+        {
+          id: 'forward',
+          label: 'Forward',
+          click: () => {
+            if (win.webContents.canGoForward()) {
+              win.webContents.goForward()
+            }
+          },
+        },
+      ],
+    },
   ]
 
   // override MacOS first Menu item
@@ -92,7 +116,12 @@ const createWindow = () => {
 
   // load url
   if (process.env.NODE_ENV === 'development') {
-    void win.loadURL(process.env.VITE_DEV_SERVER_URL!)
+    // void win.loadURL(process.env.VITE_DEV_SERVER_URL!)
+    // void win.loadFile(path.join(__dirname, '../document/1562_11443_115193.html'))
+    // void win.loadURL('https://www.lightnovel.us/cn/') // 11
+    // void win.loadURL('https://masiro.me')
+    // void win.loadURL('https://cijoc.com') //12
+    void win.loadURL('https://wenku8.net') // month 5
     win.webContents.openDevTools()
   } else {
     void win.loadFile('index.html')
@@ -113,6 +142,16 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+app.on('web-contents-created', (_e, webContents) => {
+  // 禁用window.open打开窗口
+  webContents.setWindowOpenHandler(({ url }) => {
+    if (url) {
+      void win.loadURL(url)
+    }
+    return { action: 'deny' }
+  })
 })
 
 // ipcMain.on('clickOnMenu', (_event, key) => {
