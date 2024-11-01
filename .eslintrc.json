@@ -31,5 +31,5 @@
     "project": ["./tsconfig.json", "./tsconfig.node.json", "./tsconfig.app.json"],
     "tsconfigRootDir": "./"
   },
-  "ignorePatterns": [".eslintrc.json", "vite.config.ts", "tailwind.config.js"]
+  "ignorePatterns": [".eslintrc.json", "vite.config.ts", "tailwind.config.js", "postcss.config.cjs"]
 }
