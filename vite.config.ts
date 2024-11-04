@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite'
-import path from 'node:path'
+import path, { dirname } from 'node:path'
 import react from '@vitejs/plugin-react'
 import electron from 'vite-plugin-electron/simple'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({

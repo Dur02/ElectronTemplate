@@ -1,5 +1,8 @@
 import { app, BrowserWindow, Menu, shell } from 'electron'
-import path from 'node:path'
+import path, { dirname } from 'node:path'
+import { fileURLToPath } from 'url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 let win: BrowserWindow
 
